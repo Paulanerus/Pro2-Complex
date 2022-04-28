@@ -58,10 +58,14 @@ double Complex::imag_part() const
 
 Complex Complex::operator/(const Complex& other)
 {
-	return { 0, 0 };
+	return { (this->real * other.real + this->imag * other.imag) / (other.real * other.real + other.imag * other.imag),
+			 (this->imag * other.real - this->real * other.imag) /
+			 (other.real * other.real + other.imag * other.imag) };
 }
 
 Complex Complex::operator/(const Complex& other) const
 {
-	return { 0, 0 };
+	return { (this->real * other.real + this->imag * other.imag) / (other.real * other.real + other.imag * other.imag),
+			 (this->imag * other.real - this->real * other.imag) /
+			 (other.real * other.real + other.imag * other.imag) };
 }
