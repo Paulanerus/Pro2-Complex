@@ -1,4 +1,5 @@
 #include "Complex.h"
+#include <cassert>
 
 Complex::Complex(double re, double im)
 {
@@ -58,6 +59,8 @@ double Complex::imag_part() const
 
 Complex Complex::operator/(const Complex& other)
 {
+	assert(other.real != 0 && other.imag != 0);
+
 	return { (this->real * other.real + this->imag * other.imag) / (other.real * other.real + other.imag * other.imag),
 			 (this->imag * other.real - this->real * other.imag) /
 			 (other.real * other.real + other.imag * other.imag) };
@@ -65,6 +68,8 @@ Complex Complex::operator/(const Complex& other)
 
 Complex Complex::operator/(const Complex& other) const
 {
+	assert(other.real != 0 && other.imag != 0);
+
 	return { (this->real * other.real + this->imag * other.imag) / (other.real * other.real + other.imag * other.imag),
 			 (this->imag * other.real - this->real * other.imag) /
 			 (other.real * other.real + other.imag * other.imag) };

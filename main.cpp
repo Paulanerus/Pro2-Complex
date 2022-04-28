@@ -27,6 +27,8 @@ Complex operator*(int n, const Complex& c)
 
 void test1(int len);
 
+void complex_division();
+
 int main()
 {
 	Complex c1(1, 0);
@@ -57,6 +59,8 @@ int main()
 	std::cout << "const PRODUKT: " << cc1 * cc2 << std::endl;
 
 	test1(20);
+
+	complex_division();
 
 	return 0;
 }
@@ -91,6 +95,18 @@ void test1(int len)
 	std::cout << v1 << std::endl;
 	std::cout << v2 << std::endl;
 	std::cout << v3 << std::endl;
+}
+
+void complex_division()
+{
+	Complex c1(12, 45);
+
+	Complex c2(123, 0);
+
+	Complex c3(33, 5);
+
+	std::cout << c1 / c2 << std::endl;
+	std::cout << c2 / c3 << std::endl;
 }
 
 /*
