@@ -1,12 +1,7 @@
 #include <iostream>
 #include "Complex.h"
 #include "SimpleVektor.h"
-
-std::ostream& operator<<(std::ostream& o, const Complex& c)
-{
-	o << c.real_part() << " + " << c.imag_part() << 'i';
-	return o;
-}
+#include "CException.h"
 
 std::ostream& operator<<(std::ostream& o, const SimpleVektor& v)
 {
@@ -99,14 +94,37 @@ void test1(int len)
 
 void complex_division()
 {
-	Complex c1(12, 45);
+	Complex c1(1250, 1250);
 
 	Complex c2(123, 0);
 
-	Complex c3(33, 5);
+	Complex c3(1, 1);
 
-	std::cout << c1 / c2 << std::endl;
-	std::cout << c2 / c3 << std::endl;
+	Complex c4(122, 113);
+
+	//Programm crasht, da Division durch 0 ein illegaler move ist.
+	//std::cout << c1 / c2 << std::endl;
+
+	try
+	{
+		// Complex_ExcDivByZero -> (wirft als erstes eine Exception)
+		std::cout << c1 / c2 << std::endl;
+
+		// Complex_ExcDivByNumeric
+		std::cout << c1 / c3 << std::endl;
+
+		//Die Reihenfolge der Catch-Blöcke spielt keine Rolle. Es wird die Ausnahme behandelt, die als erstes geworfen wird.
+	}
+	catch (Complex_ExcDivByZero& e)
+	{
+		e.print(c1, c3);
+	}
+	catch (Complex_ExcDivByNumeric& e)
+	{
+		e.print(c1, c3);
+	}
+
+	std::cout << c1 / c4 << std::endl;
 }
 
 /*

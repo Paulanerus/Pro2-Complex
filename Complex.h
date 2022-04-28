@@ -1,6 +1,8 @@
 #ifndef UEBUNG_3_COMPLEX_H
 #define UEBUNG_3_COMPLEX_H
 
+#include <ostream>
+
 class Complex
 {
 private:
@@ -33,6 +35,8 @@ public:
 	double real_part() const;
 
 	double imag_part() const;
+
+	friend std::ostream& operator<<(std::ostream& o, const Complex& c);
 };
 
 #endif
